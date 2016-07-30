@@ -8,12 +8,14 @@ var garden = require('../moduls/Garden')
 //metodo para obtener info de un huerto
 exports.tomar_huerto = function(req, res){
 	
+	console.log(req.session.datos[0]._id)
 	//buscamos que email y contra coincidan
 	garden.find({dueno: req.session.datos[0]._id}, function(error, documento){
 		//en caso de error
 		if( error || documento[0] == undefined ){
-			res.redirect('/error')
+			console.log(error)
 		}else{
+			console.log(documento)
 			//si todo sale bien
 			res.send(documento)
 			
@@ -38,7 +40,7 @@ exports.crear_huerto = function(req, res){
 			res.redirect('/error')
 		}else{
 			//si todo sale bien
-			res.redirect('/garden')
+			res.redirect('/principal')
 		}
 	})
 }
@@ -46,22 +48,24 @@ exports.crear_huerto = function(req, res){
 //metodo para agregar una planta
 exports.agregar_planta = function(req, res){
 
+	console.log(req.body.idHuerto)
 	//especificamos el huerto en el cual se agregara la planta y la guardamos
 	garden.update(
-		{ $and: [{dueno: req.session.datos[0]._id}, {nombre_huerto: req.query.nombre_huerto}] },
+		{ _id: req.body.idHuerto },
 		{ $addToSet: { plantas: {
-				nombre_planta: req.query.emisor,
-				humedad: req.query.humedad,
-				temperatura: req.query.temperatura,
-				luz: req.query.luz,
-				lugar: req.query.lugar
+				nombre_planta: req.body.nombre_planta,
+				humedad: req.body.humedad,
+				temperatura: req.body.temperatura,
+				luz: req.body.luz,
+				lugar: req.body.posPlanta
 				} 
 			} 
 		}, function(error, documento){
 			if(error){
-				console.log('error dude!!!! D:')
+				console.log(error)
 			}else{
-				res.redirect('/garden')
+				console.log(documento)
+				res.redirect('/principal')
 			}
 	});
 }
