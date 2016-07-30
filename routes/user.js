@@ -38,7 +38,7 @@ exports.registra = function(req, res){
 
 	//guardamos al nuevo usuario
 	new_user.save(function(error, documento){
-		if( error || documento[0] == undefined ){
+		if( error ){
 			res.redirect('/error')
 		}else{
 			//si todo sale bien
@@ -89,6 +89,39 @@ exports.modificaFotos = function(req, res){
 
 		res.redirect('/profile')
 	}
+ }
+
+ exports.modificaInfo = function(req, res){
+
+ 	user.update({_id: req.session.datos[0]._id},{
+		$set:{
+			_id: req.body.email,
+			user: req.body.user,
+			nombre: req.body.nombre,
+			apellido: req.body.apellido,
+			password: req.body.password
+			
+				
+			}
+		}, function(error, documento){
+			if(error){
+				res.send('Error.');
+			}else{
+				user.find({_id: req.body.email}, function(error2, documento2){
+					//en caso de error
+					if( error2 || documento[0] == undefined ){
+						res.redirect('/error')
+					}else{
+						//si todo sale bien
+						req.session.datos = documento2
+
+						res.redirect('/principal')
+						
+					}
+				})
+			}	
+	});
+
  }
 
  exports.cerrar = function(req, res){

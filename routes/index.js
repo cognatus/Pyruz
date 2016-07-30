@@ -11,3 +11,7 @@ exports.index = function(req, res){
 exports.control = function(req, res){
 	res.render('control', { title: 'Pyruz' })
 }
+
+exports.registro = function(req, res){
+	res.render('registro', { title: 'Express' })
+}
