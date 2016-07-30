@@ -3,47 +3,47 @@ html
 	head
 		title= title
 		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(type="text/javascript" src="/js/jquery.js")
+		script(type="text/javascript" src="/js/crearHuerto.js")
 	body
-		.page_menu
-			.app_bar.primary_color
-				img.app_icon(src="images/appicon.png")
-				| Pyruz
-			.menu_container
-				.profile_container
-					.pd_24
-						.profile_photo
-							img(src="images/profilephoto.png")
-					.profile_bottominfo
-						.profile_name
-							.pd_18
-								| Nombre usuario
-						div(style="height: 12px;")
-						.profile_info
-							.pd_18
-								.colhh2
-									.b_text Huertos
-									div(style="height: 8px;")
-									.pd_6 1
-								.colhh2
-									.b_text Plantas
-									div(style="height: 8px;")
-									.pd_6 8
+		.app_bar.primary_color
+			img.app_icon(src="images/appicon.png")
+			| Pyruz
+		.menu_container
+			div(style="height: 64px;")
+			.profile_container
+				.pd_24
+					.profile_photo
+						img(src="images/profilephoto.png")
+				.profile_bottominfo
+					.profile_name
+						.pd_18
+							| Nombre usuario
+					div(style="height: 12px;")
+					.profile_info
+						.pd_18
+							.colhh2
+								.b_text Huertos
+								div(style="height: 8px;")
+								.pd_6 1
+							.colhh2
+								.b_text Plantas
+								div(style="height: 8px;")
+								.pd_6 8
+			.border_bottom
+			.menu_options
+				div(style="height: 10px;")
+				.option
+					img(src="images/home.png")
+					| Mi Jardín
+				.option
+					img(src="images/chart-line.png")
+					| Datos
+				div(style="height: 10px;")
 				.border_bottom
-				.menu_options
-					div(style="height: 10px;")
-					.option
-						img(src="images/home.png")
-						| Mi Jardín
-					.option
-						img(src="images/chart-line.png")
-						| Datos
-					div(style="height: 10px;")
-					.border_bottom
-					div(style="height: 10px;")
-					.option
-						img(src="images/logout.png")
-						| Cerrar Sesión
-		div(style="height: 64px;")
-		.page_container
+				div(style="height: 10px;")
+				.option
+					img(src="images/logout.png")
+					| Cerrar Sesión
 
-			block content
+		block content
