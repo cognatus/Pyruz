@@ -55,28 +55,41 @@ block content
 		.page_container
 			.page_inner
 				.colhh1(style="height: 50px;")
-					#crearHuerto.button.button_inco.r_f.tri_color Agregar Huerto
+					#crearHuerto.button.button_inco.r_f.bg_red Agregar Huerto
 				.block_container.bg_white
 					.colhh1
 						.pd_24.title Huerto 1
-					.orc_container.bg_brown
-						- for(var i = 0; i < 4; i++)
-							.row
-								- for(var j = 0; j < 4; j++)
-									.col
-										.block.bg_darkgray.icon
-					.pd_18
-						//- 	.col
-						//- 		.block.secondary_color.icon
-						//- 	.col
-						//- 		.block.secondary_color.icon
-						//- .row
-						//- 	.col
-						//- 		.block.secondary_color.icon
-						//- 	.col
-						//- 		.block.secondary_color.icon
-						//- .row
-						//- 	.col
-						//- 		.block.secondary_color.icon
-						//- 	.col
-						//- 		.block.secondary_color.icon
+					.colhh1(style="padding-bottom: 24px;")
+						.orc_container.bg_brown
+							- for(var i = 0; i < 4; i++)
+								.row
+									- for(var j = 0; j < 4; j++)
+										.col
+											.block.bg_darkgray.icon
+						.controls_right
+							.colhh1
+								.title(style="margin-left: 4px;") Controlar
+							.block_container.bg_amber.white_text
+								.pd_18
+									.colhh1
+										.control_opc
+											| Iluminar
+											.switch.r_f
+												input.cmn-toggle.cmn-toggle-round(id="switch1" type="checkbox")
+												label(for="switch1")
+							.block_container.bg_green.white_text
+								.pd_18
+									.colhh1
+										.control_opc
+											| Acondicionar
+											.switch.r_f
+												input.cmn-toggle.cmn-toggle-round(id="switch2" type="checkbox")
+												label(for="switch2")
+							.block_container.bg_blue.white_text
+								.pd_18
+									.colhh1
+										.control_opc
+											| Regar
+											.switch.r_f
+												input.cmn-toggle.cmn-toggle-round(id="switch3" type="checkbox")
+												label(for="switch3")

@@ -12,11 +12,19 @@ a {
 .secondary_color{background: #009688;}
 
 .bg_gray{background-color: #eeeeee;}
-
 .bg_white{background-color: #fff;}
-
+.bg_blue{background-color: #2196F3;}
+.bg_lightblue{background-color: #03A9F4;}
+.bg_indigo{background-color: #3F51B5;}
+.bg_teal{background-color: #009688;}
+.bg_green{background-color: #4CAF50;}
+.bg_lightgreen{background-color: #8BC34A;}
+.bg_orange{background-color: #FF9800;}
+.bg_red{background-color: #F44336;}
+.bg_purple{background-color: #9C27B0;}
+.bg_lightpink{background-color: #FF4081;}
+.bg_amber{background-color: #FFC107;}
 .bg_brown{background-color: #795548;}
-
 .bg_darkgray{background-color: #212121;}
 
 .tri_color{background-color: #2196F3;}
@@ -32,6 +40,7 @@ body{
 	font-family: Helvetica, sans-serif;
 	height: 100%;
 	width: 100%;
+	min-width: 1300px;
 }
 
 .block_container{
@@ -205,10 +214,18 @@ img.app_icon{
 }
 
 .orc_container{
+	vertical-align: top;
 	width: auto;
-	max-width: 500px;
-	margin: 0 auto;
+	width: 450px;
 	padding: 12px;
+	display: inline-block;
+	margin: 0 25px 0 25px;
+}
+
+.controls_right{
+	vertical-align: top;
+	display: inline-block;
+	width: calc(100% - 550px);
 }
 
 .orc_container .row{
@@ -233,7 +250,7 @@ img.app_icon{
 
 .orc_container .col .block.icon{
 	background-image: url("/images/tree.png");
-	background-size: 40px;
+	background-size: 50%;
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -333,42 +350,58 @@ img.app_icon{
 	cursor: pointer;
 }
 
-input.cmn-toggle-round-flat + label {
+.cmn-toggle {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.cmn-toggle + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+input.cmn-toggle-round + label {
   padding: 2px;
-  width: 120px;
-  height: 60px;
+  width: 60px;
+  height: 30px;
   background-color: #dddddd;
   border-radius: 60px;
-  transition: background 0.4s;
 }
-input.cmn-toggle-round-flat + label:before,
-input.cmn-toggle-round-flat + label:after {
+input.cmn-toggle-round + label:before,
+input.cmn-toggle-round + label:after {
   display: block;
   position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
   content: "";
 }
-input.cmn-toggle-round-flat + label:before {
-  top: 2px;
-  left: 2px;
-  bottom: 2px;
-  right: 2px;
-  background-color: #fff;
+input.cmn-toggle-round + label:before {
+  right: 1px;
+  background-color: #f1f1f1;
   border-radius: 60px;
   transition: background 0.4s;
 }
-input.cmn-toggle-round-flat + label:after {
-  top: 4px;
-  left: 4px;
-  bottom: 4px;
-  width: 52px;
-  background-color: #dddddd;
-  border-radius: 52px;
-  transition: margin 0.4s, background 0.4s;
+input.cmn-toggle-round + label:after {
+  width: 32px;
+  background-color: #fff;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: margin 0.4s;
 }
-input.cmn-toggle-round-flat:checked + label {
+input.cmn-toggle-round:checked + label:before {
   background-color: #8ce196;
 }
-input.cmn-toggle-round-flat:checked + label:after {
-  margin-left: 60px;
-  background-color: #8ce196;
+input.cmn-toggle-round:checked + label:after {
+  margin-left: 30px;
+}
+
+.control_opc{
+	height: 34px;
+	line-height: 34px;
+	vertical-align: middle;
+	font-size: 18px;
 }
