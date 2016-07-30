@@ -6,6 +6,7 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var garden = require('./routes/garden');
 var app = express();
 var http = require('http').createServer(app);
 var path = require('path');
@@ -46,9 +47,16 @@ app.get('/', routes.index)
 
 //Metodos GET
 app.get('/inicia', user.inicia)
+app.get('/cerrar', user.cerrar)
+app.get('/tomar_huerto', garden.tomar_huerto)
 
 //Metodos POST
 app.post('/registra', user.registra)
+app.post('/modificaFotos', user.modificaFotos)
+app.post('/crear_huerto', user.crear_huerto)
+app.post('/agregar_planta', user.agregar_planta)
+
+
 
 //start the server
 http.listen(app.get('port'), function(){
