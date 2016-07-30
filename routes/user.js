@@ -60,29 +60,40 @@ exports.registra = function(req, res){
 	})
 }
 
+//metodo para cambiar fotos
 exports.modificaFotos = function(req, res){
 
+	//definimos las fotos a cambiar
 	var backImage = req.files.updateProfileBack
 	var profileImage = req.files.updateProfilePhoto
 	var nameImage = req.session.datos[0]._id
 
+	//comprobamos si vamos a modificar la de portada
 	if( backImage.originalFilename != '' ){
 
-		var readableStream = fs.createReadStream(backImage.path);
-		var writableStream = fs.createWriteStream(__base + "/public/profile_backgrounds/" + nameImage + ".png");
+		var readableStream = fs.createReadStream(backImage.path)
+		var writableStream = fs.createWriteStream(__base + "/public/profile_backgrounds/" + nameImage + ".png")
 
-		readableStream.pipe(writableStream, {end: false});
+		readableStream.pipe(writableStream, {end: false})
 
-		res.redirect('/profile');
+		res.redirect('/profile')
 	}
 
+	//comprobamos si vamos a modificar la de perfil
 	if( profileImage.originalFilename != '' ){
 
-		var readableStream = fs.createReadStream(profileImage.path);
-		var writableStream = fs.createWriteStream(__base + "/public/profile_photos/" + nameImage + ".png");
+		var readableStream = fs.createReadStream(profileImage.path)
+		var writableStream = fs.createWriteStream(__base + "/public/profile_photos/" + nameImage + ".png")
 
-		readableStream.pipe(writableStream, {end: false});
+		readableStream.pipe(writableStream, {end: false})
 
-		res.redirect('/profile');
+		res.redirect('/profile')
 	}
- };
+ }
+
+ exports.cerrar = function(req, res){
+
+	req.session.datos = null
+
+	res.redirect('/')
+}
