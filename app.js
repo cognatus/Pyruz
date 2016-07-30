@@ -25,6 +25,9 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+//variable global para los directorios
+global.__base = __dirname
+
 mongoose.connect('mongodb://localhost/pyruz', function(error){
 	if(error){
 		throw error;

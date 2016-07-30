@@ -1,5 +1,5 @@
 //coleccion de usuario
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 var User = mongoose.Schema({
 
@@ -9,6 +9,6 @@ var User = mongoose.Schema({
 	apellido: {type: String, required: true},
 	password: {type: String, required: true}
 
-});
+})
 
-module.exports = mongoose.model('user', User);
+module.exports = mongoose.model('user', User)
