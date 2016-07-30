@@ -1,5 +1,5 @@
 //usamos el modelo User
-var user = require('./moduls/User')
+var user = require('../moduls/User')
 
 //metodo para iniciar sesion
 exports.inicia = function(req, res){
