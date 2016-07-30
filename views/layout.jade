@@ -1,41 +1,49 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-  	.page_menu
-  		.app_bar.primary_color
-  			span.app_icon
-  				img(src="images/app_icon.png")
-  			| Pyruz
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		.page_menu
+			.app_bar.primary_color
+				img.app_icon(src="images/appicon.png")
+				| Pyruz
+			.menu_container
+				.profile_container
+					.pd_24
+						.profile_photo
+							img(src="images/profilephoto.png")
+					.profile_bottominfo
+						.profile_name
+							.pd_18
+								| Nombre usuario
+						div(style="height: 12px;")
+						.profile_info
+							.pd_18
+								.colhh2
+									.b_text Huertos
+									div(style="height: 8px;")
+									.pd_6 1
+								.colhh2
+									.b_text Plantas
+									div(style="height: 8px;")
+									.pd_6 8
+				.border_bottom
+				.menu_options
+					div(style="height: 10px;")
+					.option
+						img(src="images/home.png")
+						| Mi Jardín
+					.option
+						img(src="images/chart-line.png")
+						| Datos
+					div(style="height: 10px;")
+					.border_bottom
+					div(style="height: 10px;")
+					.option
+						img(src="images/logout.png")
+						| Cerrar Sesión
+		div(style="height: 64px;")
+		.page_container
 
-  		.menu_container
-  			.profile_container
-  				.profile_photo
-  					img(src="profilephoto.png")
-  				.profile_name
-  					.pd_18
-  						| Nombre usuario
-  				.profile_info
-  					.colhh2
-  						.b_text Huertos
-  						.pd_6 1
-  					.colhh2
-  						.b_text Plantas
-  						.pd_6 8
-  			.menu_options
-  				.option
-  					img(src="images/home.png")
-  					| Inicio
-  				.option
-  					img(src="images/account.png")
-  					| Perfil
-  				.border_bottom
-  				.option
-  					img(src="images/logout.png")
-  					| Cerrar Sesión
-
-  	.page_container
-
-    block content
+			block content
