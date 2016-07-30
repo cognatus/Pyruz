@@ -15,3 +15,7 @@ exports.control = function(req, res){
 exports.registro = function(req, res){
 	res.render('registro', { title: 'Express' })
 }
+
+exports.inicio = function(req, res){
+	res.render('inicio', { title: 'Express' })
+}

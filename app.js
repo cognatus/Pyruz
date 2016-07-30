@@ -46,13 +46,14 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index)
 app.get('/control', routes.control)
 app.get('/registro', routes.registro)
+app.get('/inicio', routes.inicio)
 
 //Metodos GET
-app.get('/inicia', user.inicia)
 app.get('/cerrar', user.cerrar)
 app.get('/tomar_huerto', garden.tomar_huerto)
 
 //Metodos POST
+app.post('/inicia', user.inicia)
 app.post('/registra', user.registra)
 app.post('/modificaFotos', user.modificaFotos)
 app.post('/modificaInfo', user.modificaInfo)

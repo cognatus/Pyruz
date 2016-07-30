@@ -10,10 +10,10 @@ var user = require('../moduls/User')
 exports.inicia = function(req, res){
 	
 	//buscamos que email y contra coincidan
-	user.find({$and: [{_id: req.body.email}, {password: req.body.password}]}, function(error, documento){
+	user.find({_id: req.body.email, password: req.body.password}, function(error, documento){
 		//en caso de error
 		if( error || documento[0] == undefined ){
-			res.redirect('/error')
+			res.json(error)
 		}else{
 			//si todo sale bien
 			req.session.datos = documento
@@ -41,21 +41,29 @@ exports.registra = function(req, res){
 		if( error ){
 			res.redirect('/error')
 		}else{
-			//si todo sale bien
-			var readableStream = fs.createReadStream(__base + '/public/images/profilephoto.png')
-			var writableStream = fs.createWriteStream(__base + '/public/profile_photos/' + documento[0]._id + '.png')
 
-			readableStream.pipe(writableStream, {end: false})
+			user.find({_id: req.body.email}, function(error2, documento2){
+					//en caso de error
+					if( error2 || documento[0] == undefined ){
+						res.redirect('/error')
+					}else{
+						//si todo sale bien
+						var readableStream = fs.createReadStream(__base + '/public/images/profilephoto.png')
+						var writableStream = fs.createWriteStream(__base + '/public/profile_photos/' + documento2[0]._id + '.png')
 
-			var readableStream2 = fs.createReadStream(__base + '/public/images/profilebackground.jpg')
-			var writableStream2 = fs.createWriteStream(__base + '/public/profile_backgrounds/' + documento[0]._id + '.png')
+						readableStream.pipe(writableStream, {end: false})
 
-			readableStream2.pipe(writableStream, {end: false})
+						var readableStream2 = fs.createReadStream(__base + '/public/images/profilebackground.jpg')
+						var writableStream2 = fs.createWriteStream(__base + '/public/profile_backgrounds/' + documento2[0]._id + '.png')
 
-			req.session.datos = documento
+						readableStream2.pipe(writableStream, {end: false})
 
-			res.redirect('/principal')
-			
+						req.session.datos = documento2
+
+						res.redirect('/principal')
+						
+					}
+				})
 		}
 	})
 }
@@ -109,8 +117,8 @@ exports.modificaFotos = function(req, res){
 			}else{
 				user.find({_id: req.body.email}, function(error2, documento2){
 					//en caso de error
-					if( error2 || documento[0] == undefined ){
-						res.redirect('/error')
+					if( error2 || documento2[0] == undefined ){
+						res.json(error2)
 					}else{
 						//si todo sale bien
 						req.session.datos = documento2
