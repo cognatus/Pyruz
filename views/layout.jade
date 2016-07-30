@@ -4,4 +4,38 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+  	.page_menu
+  		.app_bar.primary_color
+  			span.app_icon
+  				img(src="images/app_icon.png")
+  			| Pyruz
+
+  		.menu_container
+  			.profile_container
+  				.profile_photo
+  					img(src="profilephoto.png")
+  				.profile_name
+  					.pd_18
+  						| Nombre usuario
+  				.profile_info
+  					.colhh2
+  						.b_text Huertos
+  						.pd_6 1
+  					.colhh2
+  						.b_text Plantas
+  						.pd_6 8
+  			.menu_options
+  				.option
+  					img(src="images/home.png")
+  					| Inicio
+  				.option
+  					img(src="images/account.png")
+  					| Perfil
+  				.border_bottom
+  				.option
+  					img(src="images/logout.png")
+  					| Cerrar Sesión
+
+  	.page_container
+
     block content
