@@ -44,6 +44,7 @@ if ('development' == app.get('env')) {
 
 //rutas
 app.get('/', routes.index)
+app.get('/control', routes.control)
 
 //Metodos GET
 app.get('/inicia', user.inicia)
