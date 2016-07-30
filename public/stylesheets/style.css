@@ -15,6 +15,10 @@ a {
 
 .bg_white{background-color: #fff;}
 
+.bg_brown{background-color: #795548;}
+
+.bg_darkgray{background-color: #212121;}
+
 .tri_color{background-color: #2196F3;}
 
 html{width: 100%;height: 100%;}
@@ -127,7 +131,7 @@ img.app_icon{
 	margin-right: 16px;
 	position: relative;
 	display: inline-block;
-	top: 8px;
+	top: 9px;
 }
 
 .menu_container{
@@ -202,12 +206,14 @@ img.app_icon{
 
 .orc_container{
 	width: auto;
+	max-width: 500px;
+	margin: 0 auto;
 	padding: 12px;
 }
 
 .orc_container .row{
 	width: 100%;
-	min-height: 80px;
+	min-height: 60px;
 }
 
 .orc_container .col{
@@ -218,10 +224,11 @@ img.app_icon{
 
 .orc_container .col .block{
 	width: auto;
-	margin: 4px;
+	margin: 8px;
 	height: calc(100% - 8px);
 	display: block;
 	cursor: pointer;
+	border-radius: 200px;
 }
 
 .orc_container .col .block.icon{
@@ -229,6 +236,10 @@ img.app_icon{
 	background-size: 40px;
 	background-repeat: no-repeat;
 	background-position: center;
+}
+
+.orc_container .col .block:hover{
+	background-color: #009688;
 }
 
 .button{

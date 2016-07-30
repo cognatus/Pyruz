@@ -16,7 +16,7 @@ jQuery(document).ready(function(){
 		jQuery('.hidden_popup').fadeOut();
 	});
 
-	jQuery('.orc_container .block').css('height' , jQuery('.orc_container .block').width() * 0.7);
+	jQuery('.orc_container .block').css('height' , jQuery('.orc_container .block').width());
 
 
 });
