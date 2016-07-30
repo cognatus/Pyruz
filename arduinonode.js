@@ -13,9 +13,7 @@ var io = require('socket.io')(http);
 app.set('port', process.env.PORT || 6000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.set('charts', __dirname + '/public/charts');
 app.use(express.favicon());
-app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + "/public/charts" }));
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
@@ -32,33 +30,42 @@ if ('development' == app.get('env')) {
  * Arduino Stuff
  */
 
- var SerialPort = require("serialport").SerialPort
- var serialPort = new SerialPort("COM3", {baudrate:9600}, false);
- io.of('/datos').on('connection', function (socket) {
-	 serialPort.open(function (err, results) {
+var SerialPort = require('serialport');
+var serialPortWrite = new SerialPort('COM5');
+/*port.on('open', function() {
+	console.log('conecto')
+});*/
 
-		var piso = 1;
-
-	 	if(err){
-			console.log('err ' + err)
-	 	}else{
-	 		console.log('SerialPort 9600 to Read is open in COM3')
-	 	}
-
-		serialPort.on('data', function(data) {
-			var test=data.toString()
-			var info=test.split(",")
-
-			console.log('data received: ' + data + ' floor: '+ piso)
-			console.log('dat0 received: ' + info[0])
-			console.log('dat1 received: ' + info[1])
-			console.log('dat2 received: ' + info[2])
-			socket.emit('hum', info[0])
-			socket.emit('temp', info[1])
-			socket.emit('luz', info[2])
-
-		})
+ io.of('/arduino').on('connection', function (socket) {
+	 
+	 serialPortWrite.open(function (err, results){
+		if(err){
+			console.log('Error');
+			console.log(err);
+		}else{
+			console.log('SerialPort 5000 to Write is open in COM5');
+		}
 	 })
+
+	 	console.log('conecto')
+
+	 	socket.on('apagarPiso', function (piso){
+			serialPortWrite.write('d' + piso, function() {
+				console.log('apagar '+piso);
+			});
+		 });
+
+		socket.on('write', function (cosa, piso, condicion){
+			serialPortWrite.write(cosa + piso + condicion +'\r', function() {
+				console.log(cosa+' '+piso+' '+condicion+' ')
+			});
+		});
+
+		socket.on('disconnect', function() {
+				// leave the room
+				console.log('adios')
+			});
+
  })
 
 //start the server

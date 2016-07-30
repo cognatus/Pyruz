@@ -15,6 +15,6 @@ exports.registro = function(req, res){
 	res.render('registro', { title: 'Express' })
 }
 
-exports.inicio = function(req, res){
-	res.render('inicio', { title: 'Express' })
+exports.principal = function(req, res){
+	res.render('principal', { title: 'Express' })
 }

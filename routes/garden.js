@@ -49,6 +49,7 @@ exports.crear_huerto = function(req, res){
 exports.agregar_planta = function(req, res){
 
 	console.log(req.body.idHuerto)
+
 	//especificamos el huerto en el cual se agregara la planta y la guardamos
 	garden.update(
 		{ _id: req.body.idHuerto },

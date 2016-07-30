@@ -1,4 +1,5 @@
 $.noConflict();
+var socket = io('http://localhost:3000/arduino');
 
 jQuery(document).ready(function(){
 	
@@ -10,6 +11,7 @@ jQuery(document).ready(function(){
 			var variableChida = '';
 			for (var i = 0; i < data.length; i++) {
 				var aux = data[i]
+				var array = aux.plantas
 				var contador = 0;
 				variableChida +='<div class="block_container bg_white">'
 										  +'<div class="colhh1">'
@@ -20,27 +22,28 @@ jQuery(document).ready(function(){
 										    	for (var j = 0; j < parseInt(aux.filas); j++) {
 										    	variableChida += '<div class="row">'
 										    			for (var k = 0; k < parseInt(aux.columnas); k++) {
+
 										    				variableChida += '<div class="col">'
-										    					if (aux.plantas[contador] == undefined || aux.plantas.length == 0) {
-										    						variableChida += '<div class="block bg_darkgray" data-pos="'+(contador+1)+'">'
-										    					}else{
-										    						
-										    							if (aux.plantas[n].lugar == (contador+1)) {
-											    							variableChida += '<div class="block bg_darkgray icon" data-pos="'+(contador+1)+'">'
+										    					if(array.length != 0){
+											    					for (var n=0; n < array.length; n++) {
+											    						if(parseInt(array[n].lugar) == (contador+1)){
+											    							variableChida += '<div class="block bg_darkgray icon" data-pos="'+(contador+1)+'">'	
 											    						}else{
-											    							variableChida += '<div class="block bg_darkgray" data-pos="'+(contador+1)+'">'
+											    							variableChida += '<div class="block bg_darkgray" data-pos="'+(contador+1)+'">'	
 											    						}
-											    					
-										    					}
-										    					variableChida += '</div>'
+											    					}
+											    				}else{
+											    					variableChida += '<div class="block bg_darkgray" data-pos="'+(contador+1)+'">'	
+											    				}
+										    				variableChida += '</div>'
+
 										    				+'</div>'
 										    				contador++
 										    			}
 										    		variableChida += '</div>'
-										    		contador++;
 										    	}
 										    variableChida += '</div>'
-										    +'<div class="controls_right">'
+										    +'<div class="controls_right switchs_cont" data-id="'+aux._id+'">'
 										      +'<div class="colhh1">'
 										        +'<div style="margin-left: 4px;" class="title">Controlar</div>'
 										      +'</div>'
@@ -48,9 +51,9 @@ jQuery(document).ready(function(){
 										        +'<div class="pd_18">'
 										          +'<div class="colhh1">'
 										            +'<div class="control_opc">Iluminar'
-										              +'<div class="switch r_f">'
-										                +'<input id="switch1" type="checkbox" class="cmn-toggle cmn-toggle-round"/>'
-										                +'<label for="switch1"></label>'
+										              +'<div class="switch r_f" >'
+										                +'<input id="switch1_'+ i +'" type="checkbox" data-type="luz" data-value="0" class="cmn-toggle cmn-toggle-round"/>'
+										                +'<label for="switch1_'+ i +'"></label>'
 										              +'</div>'
 										            +'</div>'
 										          +'</div>'
@@ -61,8 +64,8 @@ jQuery(document).ready(function(){
 										          +'<div class="colhh1">'
 										            +'<div class="control_opc">Acondicionar'
 										              +'<div class="switch r_f">'
-										                +'<input id="switch2" type="checkbox" class="cmn-toggle cmn-toggle-round"/>'
-										                +'<label for="switch2"></label>'
+										                +'<input id="switch2_'+ i +'" type="checkbox" data-type="vent" data-value="0" class="cmn-toggle cmn-toggle-round"/>'
+										                +'<label for="switch2_'+ i +'"></label>'
 										              +'</div>'
 										            +'</div>'
 										          +'</div>'
@@ -73,8 +76,8 @@ jQuery(document).ready(function(){
 										          +'<div class="colhh1">'
 										            +'<div class="control_opc">Regar'
 										              +'<div class="switch r_f">'
-										                +'<input id="switch3" type="checkbox" class="cmn-toggle cmn-toggle-round"/>'
-										                +'<label for="switch3"></label>'
+										                +'<input id="switch3_' + i + '" type="checkbox" data-type="agua" data-value="0" class="cmn-toggle cmn-toggle-round"/>'
+										                +'<label for="switch3_' + i + '"></label>'
 										              +'</div>'
 										            +'</div>'
 										          +'</div>'
@@ -106,6 +109,38 @@ jQuery(document).ready(function(){
 	});
 
 	jQuery(document).ajaxComplete(function(){
+
+		jQuery('.switch input').on('change',function(){
+			var type = jQuery(this).attr('data-type');
+			var huerto = jQuery(this).parents('.switchs_cont').attr('data-id');
+			var data = jQuery(this).attr('data-value');
+			if( data == '0'){
+				jQuery(this).attr('data-value' , '1');
+				if(type == 'luz'){
+					socket.emit('write', 'l', 0, 1)	
+				}
+				else if(type == 'vent') {
+					socket.emit('write', 'v', 0, 1)	
+				}
+				else if(type == 'agua'){
+					socket.emit('write', 'b', 0, 1)	
+				}
+			}
+			else{
+				jQuery(this).attr('data-value' , '0');
+				if(type == 'luz'){
+					socket.emit('write', 'l', 0, 0)	
+				}
+				else if(type == 'vent') {
+					socket.emit('write', 'v', 0, 0)	
+				}
+				else if(type == 'agua'){
+					socket.emit('write', 'b', 0, 0)	
+				}
+			}
+
+		});
+
 		jQuery('.orc_container').each(function(){
 			jQuery(this).find('.col').css('width' , jQuery(this).width()/jQuery(this).find('.row').eq(0).find('.col').length);
 			jQuery(this).find('.block').css('height' , jQuery(this).find('.block').width());
@@ -128,8 +163,8 @@ jQuery(document).ready(function(){
 		jQuery('.close_popup').click(function(){
 			jQuery('.hidden_popup').fadeOut();
 		});
+
+		jQuery
 			
-	})
-
-
+	});
 });

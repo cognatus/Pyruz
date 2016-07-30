@@ -1,0 +1,98 @@
+extends layout
+
+block content
+		#hiddenAddHuerto.hidden_popup
+			.pd_48
+				.popblock
+					.colhh1.secondary_color
+						.pd_18(style="height: 24px;")
+							.close_popup.close_icon.r_f
+						.pd_18.title.white_text Crear Nuevo Huerto
+					form.colhh1.form_container(action="/crear_huerto" method="POST")
+						.field_container
+							.title Nombre
+							input(type="text" name="nombre_huerto" placeholder="Añade un nombre")
+						.field_container
+							.field_container2
+								.colhh2
+									.title Filas
+									select(type="text" name="filas" placeholder="Añade un numero de filas")
+										-for (var i = 1; i < 10; i++) 
+											option(value= i)= i
+								.colhh2
+									.title Columnas
+									select.second(type="text" name="columnas" placeholder="Añade un nombre")
+										-for (var i = 1; i < 10; i++) 
+											option(value= i)= i
+						.colhh1(style="height: 50px;margin-top: 32px;")
+							.button.button_inco.r_f.tri_color Crear
+								input(type="submit" value="")
+		#hiddenEditarLote.hidden_popup
+			.pd_48
+				.popblock
+					.colhh1.secondary_color
+						.pd_18(style="height: 24px;")
+							.close_popup.close_icon.r_f
+						.pd_18.title.white_text Editar Planta
+					#nombreHuerto.pd_18.title2(style="margin-top: 18px;") Huerto num 1
+					form.colhh1.form_container(action="agregar_planta" method="POST")
+						input#hiddenInput(type="hidden" value="" name="idHuerto")
+						input#hiddenPos(type="hidden" value="" name="posPlanta")
+						.field_container
+							.title Nombre
+							input(type="text" name="nombre_planta" placeholder="Añade un nombre")
+						.field_container
+							.title Humedad Optima
+							input(type="text" name="humedad")
+						.field_container
+							.title Luz Optima
+							input(type="text" name="temperatura")
+						.field_container
+							.title Temperatura Optima
+							input(type="text" name="luz")
+						.colhh1(style="height: 50px;margin-top: 32px;")
+							.button.button_inco.r_f.tri_color Aceptar
+								input(type="submit" value="")
+		div(style="height: 64px;")
+		.page_container
+			.page_inner
+				.colhh1(style="height: 50px;")
+					#crearHuerto.button.button_inco.r_f.bg_red Agregar Huerto
+				.magia_container
+					//- .block_container.bg_white
+						//- .colhh1
+							//- .pd_24.title Huerto 1
+						//- .colhh1(style="padding-bottom: 24px;")
+							//- .orc_container.bg_brown
+								//- - for(var i = 0; i < 4; i++)
+									//- .row
+										//- - for(var j = 0; j < 4; j++)
+											//- .col
+												//- .block.bg_darkgray.icon
+							//- .controls_right
+								//- .colhh1
+									//- .title(style="margin-left: 4px;") Controlar
+								//- .block_container.bg_amber.white_text
+									//- .pd_18
+										//- .colhh1
+											//- .control_opc
+												//- | Iluminar
+												//- .switch.r_f
+													//- input.cmn-toggle.cmn-toggle-round(id="switch1" type="checkbox")
+													//- label(for="switch1")
+								//- .block_container.bg_green.white_text
+									//- .pd_18
+										//- .colhh1
+											//- .control_opc
+												//- | Acondicionar
+												//- .switch.r_f
+													//- input.cmn-toggle.cmn-toggle-round(id="switch2" type="checkbox")
+													//- label(for="switch2")
+								//- .block_container.bg_blue.white_text
+									//- .pd_18
+										//- .colhh1
+											//- .control_opc
+												//- | Regar
+												//- .switch.r_f
+													//- input.cmn-toggle.cmn-toggle-round(id="switch3" type="checkbox")
+													//- label(for="switch3")

@@ -10,7 +10,8 @@
     "jade": "*",
     "mongoose": "3.8.23",
     "socket.io": "*",
-    "serialport": "*"
+    "serialport": "*",
+    "johnny-five": "*"
   }
 }
 
