@@ -53,6 +53,8 @@ body{
 	font-family: Helvetica, sans-serif;
 }
 
+.opc_color{color: rgba(0,0,0,0.4);font-weight: bold;}
+
 .colhh1{
 	width: 100%;
 }
@@ -101,6 +103,21 @@ body{
 .border_bottom{
 	width: 100%;
 	border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.superlogo{
+	text-align: center;
+}
+
+.superlogo img{
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+	margin-bottom: 32px;
+}
+
+.superlogo .titulo{
+	font-size: 48px;
 }
 
 .page_menu{
@@ -313,7 +330,7 @@ img.app_icon{
 
 .form_container .title{
 	width: auto;
-	padding: 4px;
+	padding: 6px 2px 8px 2px;
 	font-weight: normal;
 	font-size: 15px;
 }

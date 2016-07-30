@@ -1,17 +1,43 @@
-form(action="registra" method="POST")
-	p Nombre
-	input(type="text" name="nombre")
-	br
-	p Apellido
-	input(type="text" name="apellido")
-	br
-	p Nombre de Usuario
-	input(type="text" name="user")
-	br
-	p Email
-	input(type="text" name="email")
-	br
-	p Contraseña
-	input(type="text" name="password")
-	br
-	input(type='submit' name="Registra")
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(type="text/javascript" src="/js/jquery.js")
+		script(type="text/javascript" src="/js/crearHuerto.js")
+	body
+		//- .app_bar.primary_color
+		//- 	img.app_icon(src="images/appicon.png")
+		//- 	| Pyruz
+		.colhh2(style="vertical-align: middle;")
+			.superlogo
+				img(src="images/appicon.png")
+				.titulo PYRUZ
+
+		.colhh2(style="vertical-align: middle;")
+			.block_container.bg_white(style="margin: 12px auto;width: 520px;border-radius: 2px;")
+				.colhh1.secondary_color
+					.pd_18(style="height: 24px;")
+					.pd_18.title.white_text Registrarse
+				form.colhh1.form_container(action="registra" method="POST")
+					.colhh1.opc_color Completa todos los campos
+					.pd_6
+					.field_container
+						.title Nombre(s)
+						input(type="text" name="nombre" placeholder="Escribe tu nombre")
+					.field_container
+						.title Apellidos
+						input(type="text" name="apellido" placeholder="Escibe tus apellidos")
+					.field_container
+						.title Nickname
+						input(type="text" name="user" placeholder="Añade un nickname unico")
+					.field_container
+						.title Email
+						input(type="text" name="email" placeholder="Añade tu correo electronico")
+					.field_container
+						.title Contraseña
+						input(type="text" name="contraseña" placeholder="Escribe tu contraseña nueva")
+					.colhh1(style="height: 50px;margin-top: 32px;")
+						.button.button_inco.r_f.tri_color Registrarse
+							input(type="submit" value="" name="Registra")
+		div(style="height: 80px;")
