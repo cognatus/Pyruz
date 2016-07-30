@@ -53,12 +53,13 @@ app.get('/tomar_huerto', garden.tomar_huerto)
 //Metodos POST
 app.post('/registra', user.registra)
 app.post('/modificaFotos', user.modificaFotos)
-app.post('/crear_huerto', user.crear_huerto)
-app.post('/agregar_planta', user.agregar_planta)
+app.post('/agregar_planta', garden.agregar_planta)
+app.post('/crear_huerto', garden.crear_huerto)
 
 
 
 //start the server
 http.listen(app.get('port'), function(){
 	console.log('Express server listening on port ' + app.get('port'));
+	console.log('de momento en la galleta hay un mail definido')
 });

@@ -8,18 +8,22 @@ block content
 						.pd_18(style="height: 24px;")
 							.close_popup.close_icon.r_f
 						.pd_18.title.white_text Crear Nuevo Huerto
-					form.colhh1.form_container
+					form.colhh1.form_container(action="/crear_huerto" method="POST")
 						.field_container
 							.title Nombre
-							input(type="text" name="" placeholder="Añade un nombre")
+							input(type="text" name="nombre_huerto" placeholder="Añade un nombre")
 						.field_container
 							.field_container2
 								.colhh2
 									.title Filas
-									select(type="text" name="" placeholder="Añade un numero de filas")
+									select(type="text" name="filas" placeholder="Añade un numero de filas")
+										-for (var i = 1; i < 10; i++) 
+											option(value= i)= i
 								.colhh2
 									.title Columnas
-									select.second(type="text" name="" placeholder="Añade un nombre")
+									select.second(type="text" name="columnas" placeholder="Añade un nombre")
+										-for (var i = 1; i < 10; i++) 
+											option(value= i)= i
 						.colhh1(style="height: 50px;margin-top: 32px;")
 							.button.button_inco.r_f.tri_color Crear
 								input(type="submit" value="")

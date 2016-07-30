@@ -27,14 +27,14 @@ exports.crear_huerto = function(req, res){
 	//preparamos lo que vamos a guardar
 	var new_garden = new garden({
 			nombre_huerto: req.body.nombre_huerto,
-			dueno: req.body.dueno,
-			largo: req.body.largo,
-			ancho: req.body.ancho
+			dueno: req.session.datos[0]._id,
+			filas: req.body.filas,
+			columnas: req.body.columnas
 		})
 
 	//guardamos el nuevo huerto
 	new_garden.save(function(error, documento){
-		if( error || documento[0] == undefined ){
+		if( error ){
 			res.redirect('/error')
 		}else{
 			//si todo sale bien
