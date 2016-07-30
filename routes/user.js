@@ -69,24 +69,10 @@ exports.registra = function(req, res){
 	})
 }
 
-//metodo para cambiar fotos
-exports.modificaFotos = function(req, res){
+exports.modificaInfo = function(req, res){
 
-	//definimos las fotos a cambiar
-	var backImage = req.files.updateProfileBack
-	var profileImage = req.files.updateProfilePhoto
+	var profileImage = req.files.p_photo
 	var nameImage = req.session.datos[0]._id
-
-	//comprobamos si vamos a modificar la de portada
-	if( backImage.originalFilename != '' ){
-
-		var readableStream = fs.createReadStream(backImage.path)
-		var writableStream = fs.createWriteStream(__base + "/public/profile_backgrounds/" + nameImage + ".png")
-
-		readableStream.pipe(writableStream, {end: false})
-
-		res.redirect('/profile')
-	}
 
 	//comprobamos si vamos a modificar la de perfil
 	if( profileImage.originalFilename != '' ){
@@ -98,9 +84,6 @@ exports.modificaFotos = function(req, res){
 
 		res.redirect('/profile')
 	}
- }
-
- exports.modificaInfo = function(req, res){
 
  	user.update({_id: req.session.datos[0]._id},{
 		$set:{

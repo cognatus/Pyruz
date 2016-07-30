@@ -1,6 +1,38 @@
 extends layout
 
 block content
+		#hiddenProfilePhoto.hidden_popup
+			.pd_48
+				.popblock
+					.colhh1.secondary_color
+						.pd_18(style="height: 24px;")
+							.close_popup.close_icon.r_f
+						.pd_18.title.white_text Editar Perfil
+					form.colhh1.form_container(action="/modificaInfo" method="POST" enctype="multipart/formd-data")
+						.pd_24
+							.chn_pphoto.p_hidelem
+								span#changePhoto(style='background-image: url("images/camera.png")')
+								img#profilePhoto(src='profile_photos/{datos[0]._id}.png')
+								input#filePhoto(type="file" name="p_photo")
+						.field_container
+							.title Nombre(s)
+							input(type="text" name="nombre" placeholder="Modifica tu nombre")
+						.field_container
+							.title Apellido(s)
+							input(type="text" name="apellido" placeholder="Modifica tus apellidos")
+						.field_container
+							.title Usuario
+							input(type="text" name="user" placeholder="Modifica tu nombre de Usuario")
+						.field_container
+							.title Correo
+							input(type="email" name="email" placeholder="Modifica tu Correo")
+						.field_container
+							.title Contraseña
+							input(type="password" name="password" placeholder="Modifica tu contraseña")
+						.colhh1(style="height: 50px;margin-top: 32px;")
+							.button.button_inco.r_f.tri_color Crear
+								input(type="submit" value="")
+
 		#hiddenAddHuerto.hidden_popup
 			.pd_48
 				.popblock
@@ -57,7 +89,7 @@ block content
 		.page_container
 			.page_inner
 				.colhh1(style="height: 50px;")
-					#crearHuerto.button.button_inco.r_f.bg_red Agregar Huerto
+					#crearHuerto.button.button_inco.r_f.bg_lightpink Agregar Huerto
 				.magia_container
 					//- .block_container.bg_white
 						//- .colhh1

@@ -34,13 +34,14 @@ html{width: 100%;height: 100%;}
 body{
 	padding: 0;
 	margin: 0;
-	background: #eeeeee;
 	color: #424242;
 	font-size: 15px;
 	font-family: Helvetica, sans-serif;
 	height: 100%;
 	width: 100%;
 	min-width: 1300px;
+	background: url('/images/appbackground.jpg') no-repeat center fixed;
+	background-size: cover;
 }
 
 .block_container{
@@ -182,9 +183,25 @@ img.app_icon{
 }
 
 .profile_photo{
-	width: 64px;
-	height: 64px;
+	width: 78px;
+	height: 78px;
 	margin: 0 auto;
+	position: relative;
+}
+
+.profile_photo span{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	border-radius: 70px;
+	background-color: rgba(0,0,0,0.2);
+	display: none;
+	background-size: 42%;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 .profile_photo img{
@@ -336,7 +353,7 @@ img.app_icon{
 	font-size: 15px;
 }
 
-.form_container input[type="text"], .form_container select{
+.form_container input[type="text"], .form_container input[type="password"], .form_container input[type="email"], .form_container select{
 	background: #eeeeee;
 	color: #424242;
 	width: calc(100% - 32px);
@@ -433,4 +450,32 @@ input.cmn-toggle-round:checked + label:after {
 	height: 400px;
 	margin: 0 auto;
 	background: #e0e0e0;
+}
+
+.chn_pphoto{
+	width: 120px;
+	height: 120px;
+	margin: 0 auto;
+	overflow: hidden;
+	border-radius: 100px;
+	position: relative;
+}
+
+.chn_pphoto span{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	background-color: rgba(0,0,0,0.2); 
+	display: none;
+	background-size: 42%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.chn_pphoto img{
+	width: inherit;
+	height: inherit;
 }

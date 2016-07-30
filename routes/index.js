@@ -4,17 +4,23 @@
  */
 
 exports.index = function(req, res){
-	res.render('index', { title: 'Pyruz' })
+	res.render('index', { 
+		title: 'Pyruz',
+		datos: req.session.datos 
+	});
 }
 
 exports.control = function(req, res){
-	res.render('control', { title: 'Pyruz' })
+	res.render('control', { 
+		title: 'Pyruz',
+		datos: req.session.datos
+	});
 }
 
 exports.registro = function(req, res){
-	res.render('registro', { title: 'Express' })
+	res.render('registro', { title: 'Pyruz' })
 }
 
 exports.principal = function(req, res){
-	res.render('principal', { title: 'Express' })
+	res.render('principal', { title: 'Pyruz' })
 }

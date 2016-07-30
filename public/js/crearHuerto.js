@@ -2,6 +2,32 @@ $.noConflict();
 var socket = io('http://localhost:3000/arduino');
 
 jQuery(document).ready(function(){
+
+	var firstPhoto = jQuery('img#profilePhoto').attr('src');
+
+	jQuery('#changePhoto').click(function(){
+		jQuery('input#filePhoto').trigger('click');
+	});
+
+	jQuery('#filePhoto').change(function(){
+		if (jQuery(this).val() != '' && jQuery(this).val() != null) {
+        	previewProfilePhoto(this);
+		}
+		else{
+        	jQuery('img#profilePhoto').attr('src', firstPhoto);
+		}
+    });
+
+	function previewProfilePhoto(input) {
+	    if (input.files.length > 0) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            jQuery('img#profilePhoto').attr('src', e.target.result);
+	        }  
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
 	
 	jQuery.ajax({
 		method: 'GET',
@@ -96,16 +122,29 @@ jQuery(document).ready(function(){
 
 	jQuery('#crearHuerto').click(function(){
 		jQuery('#hiddenAddHuerto').fadeIn();
+		jQuery('html, body').css('overflow', 'hidden');
 	});
 
-	jQuery('.orc_container .block').click(function(){
+	jQuery('#editarPerfil').click(function(){
+		jQuery('#hiddenProfilePhoto').fadeIn();
+		jQuery('html, body').css('overflow', 'hidden');
+	});
+
+	jQuery('.p_hidelem').hover(function(){
+		jQuery(this).find('span').show();
+	}, function(){
+		jQuery(this).find('span').hide();
+	});
+
+/*	jQuery('.orc_container .block').click(function(){
 		var dataHuerto = jQuery(this).parents('.orc_container').attr('data-num');
 		var dataLote = jQuery(this).attr('data-lote');
 		jQuery('#hiddenEditarLote').fadeIn();
-	});
+	});*/
 
 	jQuery('.close_popup').click(function(){
 		jQuery('.hidden_popup').fadeOut();
+		location.reload();
 	});
 
 	jQuery(document).ajaxComplete(function(){
@@ -155,6 +194,7 @@ jQuery(document).ready(function(){
 			jQuery('#nombreHuerto').text(dataNombre);
 			jQuery('#hiddenInput').val(dataHuerto);
 			jQuery('#hiddenPos').val(pos);
+			jQuery('html, body').css('overflow', 'hidden');
 		});
 
 		jQuery('#contHuertos').text(jQuery('.orc_container').length);

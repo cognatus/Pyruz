@@ -56,7 +56,6 @@ app.get('/tomar_huerto', garden.tomar_huerto)
 //Metodos POST
 app.post('/inicia', user.inicia)
 app.post('/registra', user.registra)
-app.post('/modificaFotos', user.modificaFotos)
 app.post('/modificaInfo', user.modificaInfo)
 app.post('/agregar_planta', garden.agregar_planta)
 app.post('/crear_huerto', garden.crear_huerto)

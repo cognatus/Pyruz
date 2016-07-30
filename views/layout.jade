@@ -14,12 +14,13 @@ html
 			div(style="height: 64px;")
 			.profile_container
 				.pd_24
-					.profile_photo
-						img(src="images/profilephoto.png")
+					.profile_photo.p_hidelem
+						span#editarPerfil(style='background-image: url("images/edit.png")')
+						img(src='profile_photos/profilephoto.png')
 				.profile_bottominfo
 					.profile_name
 						.pd_18
-							| Nombre usuario
+							| Nombre completo
 					div(style="height: 12px;")
 					.profile_info
 						.pd_18

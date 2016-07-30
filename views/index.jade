@@ -5,27 +5,37 @@ html
 		link(rel='stylesheet', href='/stylesheets/style.css')
 		script(type="text/javascript" src="/js/jquery.js")
 	body
+		div(style="height: 60px;")
 		//- .app_bar.primary_color
 		//- 	img.app_icon(src="images/appicon.png")
 		//- 	| Pyruz
 		.colhh2(style="vertical-align: middle;")
 			.block_container.bg_white(style="margin: 12px auto;width: 520px;border-radius: 2px;")
-				.colhh1.secondary_color
+				.colhh1.secondary_color.shadow
 					.pd_18(style="height: 24px;")
 					.pd_18.title.white_text Inicio de Sesion
 				form.colhh1.form_container(action="inicia" method="POST")
 					.pd_6
 					.field_container
 						.title Email
-						input(type="text" name="email" placeholder="Escribe tu email")
+						input(type="email" name="email" placeholder="Escribe tu email")
 					.field_container
 						.title Contraseña
-						input(type="text" name="password" placeholder="Escibe tu contraseña")
+						input(type="password" name="password" placeholder="Escibe tu contraseña")
 					.colhh1(style="height: 50px;margin-top: 32px;")
-						.button.button_inco.r_f.tri_color Registrarse
+						.button.button_inco.r_f.tri_color Iniciar
 							input(type="submit" value="" name="Registra")
 		.colhh2(style="vertical-align: middle;")
 			.superlogo
 				img(src="images/appicon.png")
-				.titulo PYRUZ
-		div(style="height: 80px;")
+				.titulo.white_text PYRUZ
+		div(style="height: 40px;")
+		.colhh1.white_text
+			.colhh2
+			.colhh2(style="text-align: center;")
+				.colhh2
+					.title.pd_24 Aun sin cuenta?
+				.colhh2
+					.pd_24
+						a(href="/registro" style="text-decoration: none;")
+							.button.button_inco.bg_blue Registrate
