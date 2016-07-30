@@ -1,0 +1,81 @@
+extends layout
+
+block content
+		#hiddenAddHuerto.hidden_popup
+			.pd_48
+				.popblock
+					.colhh1.secondary_color
+						.pd_18(style="height: 24px;")
+							.close_popup.close_icon.r_f
+						.pd_18.title.white_text Crear Nuevo Huerto
+					form.colhh1.form_container
+						.field_container
+							.title Nombre
+							input(type="text" name="" placeholder="Añade un nombre")
+						.field_container
+							.field_container2
+								.colhh2
+									.title Filas
+									select(type="text" name="" placeholder="Añade un numero de filas")
+								.colhh2
+									.title Columnas
+									select.second(type="text" name="" placeholder="Añade un nombre")
+						.colhh1(style="height: 50px;margin-top: 32px;")
+							.button.button_inco.r_f.tri_color Crear
+								input(type="submit" value="")
+		#hiddenEditarLote.hidden_popup
+			.pd_48
+				.popblock
+					.colhh1.secondary_color
+						.pd_18(style="height: 24px;")
+							.close_popup.close_icon.r_f
+						.pd_18.title.white_text Editar Planta
+					.pd_18.title2(style="margin-top: 18px;") Huerto num 1
+					form.colhh1.form_container
+						.field_container
+							.title Nombre
+							input(type="text" name="" placeholder="Añade un nombre")
+						.field_container
+							.title Humedad Optima
+							select(type="text" name="")
+						.field_container
+							.title Luz Optima
+							select(type="text" name="")
+						.field_container
+							.title Lugar Optimo
+							select(type="text" name="")
+						.colhh1(style="height: 50px;margin-top: 32px;")
+							.button.button_inco.r_f.tri_color Crear
+								input(type="submit" value="")
+		div(style="height: 64px;")
+		.page_container
+			.page_inner
+				.colhh1(style="height: 50px;")
+					#crearHuerto.button.button_inco.r_f.tri_color Agregar Huerto
+				.block_container.bg_white
+					.colhh1
+						.pd_24.title Huerto 1
+					.orc_container.bg_brown
+						- for(var i = 0; i < 4; i++)
+							.row
+								- for(var j = 0; j < 4; j++)
+									.col
+										.block.bg_darkgray.icon
+					.pd_18
+						.switch
+							input(id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox")
+							label(for="cmn-toggle-4")
+						//- 	.col
+						//- 		.block.secondary_color.icon
+						//- 	.col
+						//- 		.block.secondary_color.icon
+						//- .row
+						//- 	.col
+						//- 		.block.secondary_color.icon
+						//- 	.col
+						//- 		.block.secondary_color.icon
+						//- .row
+						//- 	.col
+						//- 		.block.secondary_color.icon
+						//- 	.col
+						//- 		.block.secondary_color.icon
