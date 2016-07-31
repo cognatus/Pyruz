@@ -252,10 +252,10 @@ img.app_icon{
 .orc_container{
 	vertical-align: top;
 	width: auto;
-	width: 450px;
+	width: 300px;
 	padding: 12px;
 	display: inline-block;
-	margin: 0 25px 0 25px;
+	margin: 0 100px 0 100px;
 }
 
 .controls_right{
