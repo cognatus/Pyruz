@@ -53,6 +53,8 @@ app.get('/principal', routes.principal)
 //Metodos GET
 app.get('/cerrar', user.cerrar)
 app.get('/tomar_huerto', garden.tomar_huerto)
+app.get('/tomar_huerto2', garden.tomar_huerto2)
+app.get('/tomar_planta', garden.tomar_planta)
 app.get('/cerrar', user.cerrar)
 
 //Metodos POST

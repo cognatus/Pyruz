@@ -37,7 +37,6 @@ jQuery(document).ready(function(){
 			var variableChida = '';
 			for (var i = 0; i < data.length; i++) {
 				var aux = data[i]
-				var array = aux.plantas
 				var contador = 0;
 				variableChida +='<div class="block_container bg_white">'
 										  +'<div class="colhh1">'
@@ -48,22 +47,9 @@ jQuery(document).ready(function(){
 										    	for (var j = 0; j < parseInt(aux.filas); j++) {
 										    	variableChida += '<div class="row">'
 										    			for (var k = 0; k < parseInt(aux.columnas); k++) {
-
 										    				variableChida += '<div class="col">'
-										    					if(array.length != 0){
-											    					for (var n=0; n < array.length; n++) {
-											    						if(parseInt(array[n].lugar) == (contador+1)){
-											    							variableChida += '<div class="block bg_darkgray icon" data-pos="'+(contador+1)+'">'	
-											    						}else{
-											    							variableChida += '<div class="block bg_darkgray" data-pos="'+(contador+1)+'">'	
-											    						}
-											    					}
-											    				}else{
-											    					variableChida += '<div class="block bg_darkgray" data-pos="'+(contador+1)+'">'	
-											    				}
+										    					variableChida += '<div class="block bg_darkgray" data-pos="'+(contador+1)+'"></div>'
 										    				variableChida += '</div>'
-
-										    				+'</div>'
 										    				contador++
 										    			}
 										    		variableChida += '</div>'
@@ -114,6 +100,33 @@ jQuery(document).ready(function(){
 										+'</div>';
 			}
 			jQuery('.magia_container').append(variableChida);
+
+			jQuery('.orc_container').each(function(){
+				var elem = jQuery(this);
+				var dataHuerto = jQuery(this).attr('data-id');
+
+				jQuery.ajax({
+					method: 'GET',
+					url: 'tomar_huerto2',
+					cache: true,
+					data: {huerto2: dataHuerto},
+					success: function(data) {
+						for(var j = 0; j < elem.find('.block').length; j++){
+							for (var n = 0; n < data.length; n++) {
+								if(elem.find('.block').eq(j).attr('data-pos') == data[n]._id){
+									console.log('Hola');
+									elem.find('.block[data-pos="' + data[n]._id + '"]').addClass('icon')
+								}
+							}
+
+						}
+						
+						
+					}, error: function(jqXHR, textStatus, errorThrown) {
+						console.log('error Tomar huerto 2' + textStatus + " " + errorThrown);
+					}
+				});
+			});
 		},
 		error: function(jqXHR, textStatus, errorThrown) {
 			console.log('error ' + textStatus + " " + errorThrown);
@@ -124,6 +137,12 @@ jQuery(document).ready(function(){
 
 	jQuery('#editPlanta').click(function(){
 		jQuery('#plantaHidden').slideDown();
+		if(jQuery('#plantaNombre').text() != ''){
+			jQuery('form#plantaHidden').attr('action', 'cambia_planta')
+		}
+		else{
+			jQuery('form#plantaHidden').attr('action', 'agregar_planta')
+		}
 	});
 
 	jQuery('#crearHuerto').click(function(){
@@ -201,6 +220,31 @@ jQuery(document).ready(function(){
 			jQuery('#hiddenInput').val(dataHuerto);
 			jQuery('#hiddenPos').val(pos);
 			jQuery('html, body').css('overflow', 'hidden');
+			
+			jQuery.ajax({
+				method: 'GET',
+				url: 'tomar_planta',
+				cache: true,
+				data: {huerto: dataHuerto,
+						posc: pos},
+				success: function(data) {
+					console.log(data[0].plantas.length)
+					for(var i = 0; i < data[0].plantas.length; i++){
+						console.log(data[0].plantas[i]._id == pos)
+						if (data[0].plantas[i]._id == pos) {
+							jQuery('#plantaNombre').text(data[0].plantas[i].nombre_planta)
+							jQuery('#plantaLuz').text(data[0].plantas[i].luz)
+							jQuery('#plantaHum').text(data[0].plantas[i].humedad)
+							jQuery('#plantaTemp').text(data[0].plantas[i].temperatura)
+							jQuery('#plantaLugar').text(pos)	
+						}
+					}
+					
+				}, error: function(jqXHR, textStatus, errorThrown) {
+					console.log('error ' + textStatus + " " + errorThrown);
+				}
+			});
+
 		});
 
 		jQuery('#contHuertos').text(jQuery('.orc_container').length);
@@ -210,7 +254,7 @@ jQuery(document).ready(function(){
 			jQuery('.hidden_popup').fadeOut();
 		});
 
-		jQuery
+		
 			
 	});
 });

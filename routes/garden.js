@@ -23,6 +23,39 @@ exports.tomar_huerto = function(req, res){
 	})
 }
 
+//metodo para obtener info de un huerto
+exports.tomar_huerto2 = function(req, res){
+	//buscamos que email y contra coincidan
+	garden.find({_id: req.query.huerto2}, function(error, documento){
+		//en caso de error
+		if( error || documento[0] == undefined ){
+			console.log(error)
+		}else{
+			console.log(documento)
+			//si todo sale bien
+			res.send(documento[0].plantas)
+			
+		}
+	})
+}
+
+//toma planta
+exports.tomar_planta = function(req, res){
+	
+	//buscamos que email y contra coincidan
+	garden.find({_id: req.query.huerto, 'plantas._id': req.query.posc}, function(error, documento){
+		//en caso de error
+		if( error || documento[0] == undefined ){
+			res.send('nop')
+		}else{
+			console.log(''+documento)
+			//si todo sale bien
+			res.send(documento)
+			
+		}
+	})
+}
+
 //metodo para registrar un huerto
 exports.crear_huerto = function(req, res){
 	
@@ -54,11 +87,34 @@ exports.agregar_planta = function(req, res){
 	garden.update(
 		{ _id: req.body.idHuerto },
 		{ $addToSet: { plantas: {
+				_id: req.body.posPlanta,
 				nombre_planta: req.body.nombre_planta,
 				humedad: req.body.humedad,
 				temperatura: req.body.temperatura,
-				luz: req.body.luz,
-				lugar: req.body.posPlanta
+				luz: req.body.luz
+				} 
+			} 
+		}, function(error, documento){
+			if(error){
+				console.log(error)
+			}else{
+				console.log(documento)
+				res.redirect('/principal')
+			}
+	});
+}
+
+//metodo para cambiar una planta
+exports.cambia_planta = function(req, res){
+
+	//especificamos el huerto en el cual se agregara la planta y la guardamos
+	garden.update(
+		{ _id: req.body.idHuerto, 'plantas._id': req.body.posc},
+		{ $addToSet: { plantas: {
+				nombre_planta: req.body.nombre_planta,
+				humedad: req.body.humedad,
+				temperatura: req.body.temperatura,
+				luz: req.body.luz
 				} 
 			} 
 		}, function(error, documento){

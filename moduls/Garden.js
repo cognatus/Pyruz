@@ -8,11 +8,11 @@ var Garden = mongoose.Schema({
 	filas: {type: String, required: true},
 	columnas: {type: String, required: true},
 	plantas: [{
+				_id: {type: String, required: true},
 				nombre_planta: {type: String, required: true},
 				humedad: {type: String, required: true},
 				temperatura: {type: String, required: true},
-				luz: {type: String, required: true},
-				lugar: {type: String, required: true}
+				luz: {type: String, required: true}
 	}]
 
 })
