@@ -120,6 +120,12 @@ jQuery(document).ready(function(){
 		}
 	});
 
+	jQuery('#plantaHidden').hide();
+
+	jQuery('#editPlanta').click(function(){
+		jQuery('#plantaHidden').slideDown();
+	});
+
 	jQuery('#crearHuerto').click(function(){
 		jQuery('#hiddenAddHuerto').fadeIn();
 		jQuery('html, body').css('overflow', 'hidden');

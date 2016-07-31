@@ -199,9 +199,10 @@ img.app_icon{
 	border-radius: 70px;
 	background-color: rgba(0,0,0,0.2);
 	display: none;
-	background-size: 42%;
+	background-size: 35%;
 	background-position: center;
 	background-repeat: no-repeat;
+	cursor: pointer;
 }
 
 .profile_photo img{
@@ -470,12 +471,27 @@ input.cmn-toggle-round:checked + label:after {
 	z-index: 3;
 	background-color: rgba(0,0,0,0.2); 
 	display: none;
-	background-size: 42%;
+	background-size: 35%;
 	background-position: center;
 	background-repeat: no-repeat;
+	cursor: pointer;
 }
 
 .chn_pphoto img{
 	width: inherit;
 	height: inherit;
+}
+
+.circle_icon{
+	width: 48px;
+	height: 48px;
+	background-size: 22px;
+	background-repeat: no-repeat;
+	background-position: center;
+	border-radius: 40px;
+	cursor: pointer;
+}
+
+.circle_icon:hover{
+	background-color: rgba(0,0,0,0.05);
 }
