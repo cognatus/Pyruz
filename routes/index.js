@@ -4,9 +4,14 @@
  */
 
 exports.index = function(req, res){
-	res.render('index', { 
-		title: 'Pyruz'
-	});
+	if (!req.session.datos) {
+		res.render('index', { 
+			title: 'Pyruz'
+		});
+	}else{
+		res.render('principal', { title: 'Pyruz', datos: req.session.datos  })
+	}
+	
 }
 
 exports.control = function(req, res){
@@ -22,4 +27,8 @@ exports.registro = function(req, res){
 
 exports.principal = function(req, res){
 	res.render('principal', { title: 'Pyruz', datos: req.session.datos  })
+}
+
+exports.error = function(req, res){
+	res.render('error', { title: 'Pyruz', datos: req.session.datos  })
 }

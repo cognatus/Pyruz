@@ -44,18 +44,37 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//valida la sesion iniciada
+function login(req, res, next){
+	if( req.session.datos ){
+		next();
+	}else{
+		res.redirect('/error');
+	}
+}
+
+//valida la sesion NO ha iniciada
+function loginN(req, res, next){
+	if( !req.session.datos ){
+		next();
+	}else{
+		res.redirect('/error');
+	}
+}
+
+
 //rutas
 app.get('/', routes.index)
-app.get('/control', routes.control)
-app.get('/registro', routes.registro)
-app.get('/principal', routes.principal)
+app.get('/control', login, routes.control)
+app.get('/registro', loginN, routes.registro)
+app.get('/principal', login, routes.principal)
+app.get('/error', routes.error)
 
 //Metodos GET
-app.get('/cerrar', user.cerrar)
-app.get('/tomar_huerto', garden.tomar_huerto)
-app.get('/tomar_huerto2', garden.tomar_huerto2)
-app.get('/tomar_planta', garden.tomar_planta)
-app.get('/cerrar', user.cerrar)
+app.get('/cerrar', login, user.cerrar)
+app.get('/tomar_huerto', login, garden.tomar_huerto)
+app.get('/tomar_huerto2', login, garden.tomar_huerto2)
+app.get('/tomar_planta', login, garden.tomar_planta)
 
 //Metodos POST
 app.post('/inicia', user.inicia)
