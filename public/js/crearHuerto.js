@@ -40,7 +40,7 @@ jQuery(document).ready(function(){
 				var contador = 0;
 				variableChida +='<div class="block_container bg_white">'
 										  +'<div class="colhh1">'
-										    +'<div class="pd_24 title">Huerto '+aux.nombre_huerto+'</div>'
+										    +'<div class="pd_24 title">'+aux.nombre_huerto+'</div>'
 										  +'</div>'
 										  +'<div style="padding-bottom: 24px;" class="colhh1">'
 										    +'<div class="orc_container bg_brown" data-id="'+aux._id+'" data-name="'+aux.nombre_huerto+'">'

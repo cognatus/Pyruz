@@ -401,8 +401,8 @@ img.app_icon{
 
 input.cmn-toggle-round + label {
   padding: 2px;
-  width: 60px;
-  height: 30px;
+  width: 50px;
+  height: 25px;
   background-color: #dddddd;
   border-radius: 60px;
 }
@@ -417,27 +417,27 @@ input.cmn-toggle-round + label:after {
 }
 input.cmn-toggle-round + label:before {
   right: 1px;
-  background-color: #f1f1f1;
+  background-color: rgba(255,255,255,0);
   border-radius: 60px;
   transition: background 0.4s;
 }
 input.cmn-toggle-round + label:after {
-  width: 32px;
+  width: 27px;
   background-color: #fff;
   border-radius: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: margin 0.4s;
 }
 input.cmn-toggle-round:checked + label:before {
-  background-color: #8ce196;
+  background-color: #8BC34A;
 }
 input.cmn-toggle-round:checked + label:after {
-  margin-left: 30px;
+  margin-left: 25px;
 }
 
 .control_opc{
-	height: 34px;
-	line-height: 34px;
+	height: 25px;
+	line-height: 25px;
 	vertical-align: middle;
 	font-size: 18px;
 }

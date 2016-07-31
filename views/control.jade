@@ -3,51 +3,36 @@ extends layout
 block content
 
 		script( src='/javascripts/highcharts.js' )
-		#hiddenAddHuerto.hidden_popup
+		#hiddenProfilePhoto.hidden_popup
 			.pd_48
 				.popblock
-					.colhh1.secondary_color
+					.colhh1.secondary_color.shadow
 						.pd_18(style="height: 24px;")
 							.close_popup.close_icon.r_f
-						.pd_18.title.white_text Crear Nuevo Huerto
-					form.colhh1.form_container
+						.pd_18.title.white_text Editar Perfil
+					form.colhh1.form_container(action="modificaInfo" method="POST" enctype="multipart/form-data")
+						.pd_24
+							.chn_pphoto.p_hidelem
+								span#changePhoto(style='background-image: url("images/camera.png")')
+								img#profilePhoto(src='profile_photos/#{datos[0]._id}.png')
+								input#filePhoto(type="file" name="p_photo" accept='image/*' value='')
 						.field_container
-							.title Nombre
-							input(type="text" name="" placeholder="Añade un nombre")
+							.title Nombre(s)
+							input(type="text" name="nombre" placeholder="Modifica tu nombre")
 						.field_container
-							.field_container2
-								.colhh2
-									.title Filas
-									select(type="text" name="" placeholder="Añade un numero de filas")
-								.colhh2
-									.title Columnas
-									select.second(type="text" name="" placeholder="Añade un nombre")
+							.title Apellido(s)
+							input(type="text" name="apellido" placeholder="Modifica tus apellidos")
+						.field_container
+							.title Usuario
+							input(type="text" name="user" placeholder="Modifica tu nombre de Usuario")
+						.field_container
+							.title Correo
+							input(type="email" name="email" placeholder="Modifica tu Correo")
+						.field_container
+							.title Contraseña
+							input(type="password" name="password" placeholder="Modifica tu contraseña")
 						.colhh1(style="height: 50px;margin-top: 32px;")
-							.button.button_inco.r_f.tri_color Crear
-								input(type="submit" value="")
-		#hiddenEditarLote.hidden_popup
-			.pd_48
-				.popblock
-					.colhh1.secondary_color
-						.pd_18(style="height: 24px;")
-							.close_popup.close_icon.r_f
-						.pd_18.title.white_text Editar Planta
-					.pd_18.title2(style="margin-top: 18px;") Huerto num 1
-					form.colhh1.form_container
-						.field_container
-							.title Nombre
-							input(type="text" name="" placeholder="Añade un nombre")
-						.field_container
-							.title Humedad Optima
-							select(type="text" name="")
-						.field_container
-							.title Luz Optima
-							select(type="text" name="")
-						.field_container
-							.title Lugar Optimo
-							select(type="text" name="")
-						.colhh1(style="height: 50px;margin-top: 32px;")
-							.button.button_inco.r_f.tri_color Crear
+							.button.button_inco.r_f.tri_color Guardar Cambios
 								input(type="submit" value="")
 		div(style="height: 64px;")
 		.page_container
