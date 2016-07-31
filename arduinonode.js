@@ -1,6 +1,6 @@
 
 /**
- * Module dependencies.
+ * Esta clase esta más muerta que algo muy muerto que ni se usa .-.
  */
 
 var express = require('express');

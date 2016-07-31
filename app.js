@@ -19,6 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.cookieParser('sabemos todo sobre ti'));
 app.use(express.session());
+app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + '/public' }));
 //app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -52,6 +53,7 @@ app.get('/principal', routes.principal)
 //Metodos GET
 app.get('/cerrar', user.cerrar)
 app.get('/tomar_huerto', garden.tomar_huerto)
+app.get('/cerrar', user.cerrar)
 
 //Metodos POST
 app.post('/inicia', user.inicia)

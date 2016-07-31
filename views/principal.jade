@@ -8,12 +8,12 @@ block content
 						.pd_18(style="height: 24px;")
 							.close_popup.close_icon.r_f
 						.pd_18.title.white_text Editar Perfil
-					form.colhh1.form_container(action="/modificaInfo" method="POST" enctype="multipart/formd-data")
+					form.colhh1.form_container(action="modificaInfo" method="POST" enctype="multipart/form-data")
 						.pd_24
 							.chn_pphoto.p_hidelem
 								span#changePhoto(style='background-image: url("images/camera.png")')
-								img#profilePhoto(src='profile_photos/{datos[0]._id}.png')
-								input#filePhoto(type="file" name="p_photo")
+								img#profilePhoto(src='profile_photos/#{datos[0]._id}.png')
+								input#filePhoto(type="file" name="p_photo" accept='image/*' value='')
 						.field_container
 							.title Nombre(s)
 							input(type="text" name="nombre" placeholder="Modifica tu nombre")

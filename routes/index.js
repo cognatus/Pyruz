@@ -5,8 +5,7 @@
 
 exports.index = function(req, res){
 	res.render('index', { 
-		title: 'Pyruz',
-		datos: req.session.datos 
+		title: 'Pyruz'
 	});
 }
 
@@ -22,5 +21,5 @@ exports.registro = function(req, res){
 }
 
 exports.principal = function(req, res){
-	res.render('principal', { title: 'Pyruz' })
+	res.render('principal', { title: 'Pyruz', datos: req.session.datos  })
 }

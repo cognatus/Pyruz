@@ -1,6 +1,8 @@
 extends layout
 
 block content
+
+		script( src='/javascripts/highcharts.js' )
 		#hiddenAddHuerto.hidden_popup
 			.pd_48
 				.popblock
@@ -53,15 +55,15 @@ block content
 				.block_container.bg_white
 					.pd_24.title.bg_amber.white_text.shadow Grafica de Luz
 					.pd_24
-						.chart
+						.chart( id="chartLuz" )
 				.block_container.bg_white
 					.pd_24.title.bg_blue.white_text.shadow Grafica de Humedad
 					.pd_24
-						.chart
+						.chart( id="chartHumedad" )
 				.block_container.bg_white
 					.pd_24.title.bg_green.white_text.shadow Grafica de Temperatura
 					.pd_24
-						.chart
+						.chart( id="chartTemp" )
 			div(style="height: 80px;")
 
 						//- 	.col
@@ -78,3 +80,4 @@ block content
 						//- 		.block.secondary_color.icon
 						//- 	.col
 						//- 		.block.secondary_color.icon
+		script(type="text/javascript" src="/javascripts/graficas.js")

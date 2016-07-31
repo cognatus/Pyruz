@@ -16,11 +16,11 @@ html
 				.pd_24
 					.profile_photo.p_hidelem
 						span#editarPerfil(style='background-image: url("images/edit.png")')
-						img(src='profile_photos/profilephoto.png')
+						img(src='profile_photos/#{datos[0]._id}.png')
 				.profile_bottominfo
 					.profile_name
 						.pd_18
-							| Nombre completo
+							| #{datos[0].nombre} #{datos[0].apellido}
 					div(style="height: 12px;")
 					.profile_info
 						.pd_18
@@ -46,8 +46,9 @@ html
 				div(style="height: 10px;")
 				.border_bottom
 				div(style="height: 10px;")
-				.option
-					img(src="images/logout.png")
-					| Cerrar Sesión
+				a(href="/cerrar")
+					.option
+						img(src="images/logout.png")
+						| Cerrar Sesión
 
 		block content

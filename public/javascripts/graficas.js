@@ -1,76 +1,222 @@
-var socket = io('http://localhost:6000/datos');
-			
+		
 var chartHumedad;
 var chartTemp;
 var chartLuz;
+
 
 //configuracion para la grafica de humedad
 chartHumedad = new Highcharts.Chart({
 	chart: {
 		renderTo: 'chartHumedad', 
-		defaultSeriesType: 'spline',
+		type: 'spline',
+		animation: Highcharts.svg, 
+		marginRight: 10,
 		events: {
-			load: function() {
-					// Cada vez que reciba un valor desde el socket, lo meto en la gráfica
-					socket.on('hum', function (data) {
-						var dato = parseInt(data)
-						var tiempo = (new Date()).getTime();
-						var series = chartHumedad.series[0];
-						series.addPoint([tiempo, dato]);
-						$('#humd').text(dato +' HR');
-						$('#humm').text(dato +' HR');
-						if(series.data.length > 7){
-							series.data[0].remove(true);
-						}
-					});
-				}
+			load: function () {
+				var series = this.series[0];
+				setInterval(function () {
+					var x = (new Date()).getTime(), 
+						y = Math.random();
+					series.addPoint([x, y], true, true);
+				}, 1000);
+			}
 		}
-	},
-	rangeSelector : {
-		selected : 100
 	},
 	title: {
-		text: 'Humedad'
+		text: 'Live random data'
 	},
 	xAxis: {
-		type: 'datetime',
-		tickPixelInterval: 150,
-		maxZoom: 20 * 1000
+		type: 'Hora',
+		tickPixelInterval: 150
 	},
 	yAxis: {
-		minPadding: 0.2,
-		maxPadding: 0.2,
 		title: {
 			text: 'HR'
+		},
+		plotLines: [{
+			value: 0,
+			width: 1,
+			color: '#808080'
+		}]
+	},
+	tooltip: {
+		formatter: function () {
+			return '<b>' + this.series.name + '</b><br/>' +
+				Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+				Highcharts.numberFormat(this.y, 2);
 		}
+	},
+	legend: {
+		enabled: false
+	},
+	exporting: {
+		enabled: false
+	},
+	series: [{
+		name: 'Grafica de Humedad',
+		data: (function () {
+			
+			var data = [],
+				time = (new Date()).getTime(),
+				i
+			for (i = -19; i <= 0; i += 1) {
+				data.push({
+					x: time + i * 1000,
+					y: Math.random()
+				});
+			}
+			return data;
+		}())
+	}]
+});
+
+//configuracion para la grafica de humedad
+chartLuz = new Highcharts.Chart({
+	chart: {
+		renderTo: 'chartLuz', 
+		type: 'spline',
+		animation: Highcharts.svg, 
+		marginRight: 10,
+		events: {
+			load: function () {
+				var series = this.series[0];
+				setInterval(function () {
+					var x = (new Date()).getTime(), 
+						y = Math.random();
+					series.addPoint([x, y], true, true);
+				}, 1000);
+			}
+		}
+	},
+	title: {
+		text: 'Live random data'
+	},
+	xAxis: {
+		type: 'Hora',
+		tickPixelInterval: 150
+	},
+	yAxis: {
+		title: {
+			text: 'Lux'
+		},
+		plotLines: [{
+			value: 0,
+			width: 1,
+			color: '#3498db'
+		}]
+	},
+	tooltip: {
+		formatter: function () {
+			return '<b>' + this.series.name + '</b><br/>' +
+				Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+				Highcharts.numberFormat(this.y, 2);
+		}
+	},
+	legend: {
+		enabled: false
+	},
+	exporting: {
+		enabled: false
 	},
 	series: [{
 		color: '#3498db',
-		name: 'Lote 1',
-		data: []
+		name: 'Grafica de Luz',
+		data: (function () {
+			
+			var data = [],
+				time = (new Date()).getTime(),
+				i
+			for (i = -19; i <= 0; i += 1) {
+				data.push({
+					x: time + i * 1000,
+					y: Math.random()
+				});
+			}
+			return data;
+		}())
+	}]
+});
+
+//configuracion para la grafica de Temperatura
+chartTemperatura = new Highcharts.Chart({
+	chart: {
+		renderTo: 'chartTemp', 
+		type: 'spline',
+		animation: Highcharts.svg, 
+		marginRight: 10,
+		events: {
+			load: function () {
+				var series = this.series[0];
+				setInterval(function () {
+					var x = (new Date()).getTime(), 
+						y = Math.random();
+					series.addPoint([x, y], true, true);
+				}, 1000);
+			}
+		}
+	},
+	title: {
+		text: 'Live random data'
+	},
+	xAxis: {
+		type: 'Hora',
+		tickPixelInterval: 150
+	},
+	yAxis: {
+		title: {
+			text: '°C'
+		},
+		plotLines: [{
+			value: 0,
+			width: 1,
+			color: '#3498db'
+		}]
+	},
+	tooltip: {
+		formatter: function () {
+			return '<b>' + this.series.name + '</b><br/>' +
+				Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+				Highcharts.numberFormat(this.y, 2);
+		}
+	},
+	legend: {
+		enabled: false
+	},
+	exporting: {
+		enabled: false
+	},
+	series: [{
+		name: 'Grafica de Temperatura',
+		data: (function () {
+			
+			var data = [],
+				time = (new Date()).getTime(),
+				i
+			for (i = -19; i <= 0; i += 1) {
+				data.push({
+					x: time + i * 1000,
+					y: Math.random()
+				});
+			}
+			return data;
+		}())
 	}]
 });
 
 //configuracion para la grafica de temperatura
-chartTemp = new Highcharts.Chart({
+/*chartTemp = new Highcharts.Chart({
 	chart: {
 		renderTo: 'chartTemp', 
 		defaultSeriesType: 'spline',
 		events: {
 			load: function() {
-					// Cada vez que reciba un valor desde el socket, lo meto en la gráfica
-					socket.on('temp', function (data) {
-						var dato = parseInt(data)
-						var tiempo = (new Date()).getTime();
-						var series = chartTemp.series[0];
-						series.addPoint([tiempo, dato]);
-						$('#temp').text(dato +' °C');
-						$('#temp').text(dato +' °C');
-						if(series.data.length > 7){
-							series.data[0].remove(true);
-						}
-					});
-				}
+					var series = this.series[0];
+					setInterval(function () {
+						var x = (new Date()).getTime(), // current time
+							y = Math.random();
+							series.addPoint([x, y], true, true);
+					}, 1000);
+			}
 		}
 	},
 	rangeSelector : {
@@ -92,9 +238,20 @@ chartTemp = new Highcharts.Chart({
 		}
 	},
 	series: [{
-		color: '#3498db',
-		name: 'Lote 1',
-		data: []
+		name: 'Random data',
+		data: (function () {
+			
+			var data = [],
+				time = (new Date()).getTime(),
+				i;
+			for (i = -19; i <= 0; i += 1) {
+				data.push({
+					x: time + i * 1000,
+					y: Math.random()
+				});
+			}
+			return data;
+		}())
 	}]
 });
 
@@ -143,4 +300,4 @@ chartLuz = new Highcharts.Chart({
 		name: 'Lote 1',
 		data: []
 	}]
-});
+});*/

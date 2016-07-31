@@ -81,8 +81,6 @@ exports.modificaInfo = function(req, res){
 		var writableStream = fs.createWriteStream(__base + "/public/profile_photos/" + nameImage + ".png")
 
 		readableStream.pipe(writableStream, {end: false})
-
-		res.redirect('/profile')
 	}
 
  	user.update({_id: req.session.datos[0]._id},{
