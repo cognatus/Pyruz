@@ -490,6 +490,8 @@ input.cmn-toggle-round:checked + label:after {
 	background-position: center;
 	border-radius: 40px;
 	cursor: pointer;
+	display: inline-block;
+	margin-left: 12px;
 }
 
 .circle_icon:hover{

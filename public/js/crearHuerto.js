@@ -1,7 +1,42 @@
 $.noConflict();
 var socket = io('http://localhost:3000/arduino');
 
+function elimHuerto(idHuerto){
+	jQuery.ajax({
+		method: 'POST',
+		url: '/eliminar_huerto',
+		data: {
+			idHuertoDel: idHuerto
+		},
+		success: function(data) {
+			alert('¡Huerto eliminado correctamente!');
+			location.reload();
+		}, error: function(jqXHR, textStatus, errorThrown) {
+			console.log('error Eliminar' + textStatus + " " + errorThrown);
+		}
+	});
+}
+
 jQuery(document).ready(function(){
+
+	jQuery('#elimPlanta').click(function(){
+		var idPlanta = jQuery(this).attr('data-id');
+		var idHuertElim = jQuery(this).attr('data-huert');
+		//console.log("Planta: " + idPlanta + "  Huerto: " + idHuertElim)
+		jQuery.ajax({
+			method: 'POST',
+			url: '/eliminar_planta',
+			data: {
+				plantaElim: idPlanta,
+				idHuertoElim: idHuertElim
+			},
+			success: function(data) {
+				alert('¡Planta eliminada correctamente!')
+			}, error: function(jqXHR, textStatus, errorThrown) {
+				console.log('error Eliminar' + textStatus + " " + errorThrown);
+			}
+		});
+	});
 
 	var firstPhoto = jQuery('img#profilePhoto').attr('src');
 
@@ -42,7 +77,7 @@ jQuery(document).ready(function(){
 										  +'<div class="colhh1">'
 										    +'<div class="pd_24 title">'+aux.nombre_huerto+'</div>'
 										  +'</div>'
-										  +'<div style="padding-bottom: 24px;" class="colhh1">'
+										  +'<div class="colhh1">'
 										    +'<div class="orc_container bg_brown" data-id="'+aux._id+'" data-name="'+aux.nombre_huerto+'">'
 										    	for (var j = 0; j < parseInt(aux.filas); j++) {
 										    	variableChida += '<div class="row">'
@@ -96,10 +131,42 @@ jQuery(document).ready(function(){
 										        +'</div>'
 										      +'</div>'
 										    +'</div>'
+										    +'<div class="pd_24" style="height: 48px;"><div class="circle_icon r_f" style="background-image: url(&quot;images/delete.png&quot;)" onclick ="elimHuerto(&quot;' + aux._id+ '&quot;)" title="Eliminar"></div></div>'
 										  +'</div>'
 										+'</div>';
 			}
 			jQuery('.magia_container').append(variableChida);
+
+			jQuery('.switch input').on('change',function(){
+				var type = jQuery(this).attr('data-type');
+				var huerto = jQuery(this).parents('.switchs_cont').attr('data-id');
+				var data = jQuery(this).attr('data-value');
+				if( data == '0'){
+					jQuery(this).attr('data-value' , '1');
+					if(type == 'luz'){
+						socket.emit('write', 'l', 0, 1)	
+					}
+					else if(type == 'vent') {
+						socket.emit('write', 'v', 0, 1)	
+					}
+					else if(type == 'agua'){
+						socket.emit('write', 'b', 0, 1)	
+					}
+				}
+				else{
+					jQuery(this).attr('data-value' , '0');
+					if(type == 'luz'){
+						socket.emit('write', 'l', 0, 0)	
+					}
+					else if(type == 'vent') {
+						socket.emit('write', 'v', 0, 0)	
+					}
+					else if(type == 'agua'){
+						socket.emit('write', 'b', 0, 0)	
+					}
+				}
+
+			});
 
 			jQuery('.orc_container').each(function(){
 				var elem = jQuery(this);
@@ -114,7 +181,6 @@ jQuery(document).ready(function(){
 						for(var j = 0; j < elem.find('.block').length; j++){
 							for (var n = 0; n < data.length; n++) {
 								if(elem.find('.block').eq(j).attr('data-pos') == data[n]._id){
-									console.log('Hola');
 									elem.find('.block[data-pos="' + data[n]._id + '"]').addClass('icon')
 								}
 							}
@@ -172,38 +238,9 @@ jQuery(document).ready(function(){
 		location.reload();
 	});
 
+	jQuery('#validPlant').hide();
+
 	jQuery(document).ajaxComplete(function(){
-
-		jQuery('.switch input').on('change',function(){
-			var type = jQuery(this).attr('data-type');
-			var huerto = jQuery(this).parents('.switchs_cont').attr('data-id');
-			var data = jQuery(this).attr('data-value');
-			if( data == '0'){
-				jQuery(this).attr('data-value' , '1');
-				if(type == 'luz'){
-					socket.emit('write', 'l', 0, 1)	
-				}
-				else if(type == 'vent') {
-					socket.emit('write', 'v', 0, 1)	
-				}
-				else if(type == 'agua'){
-					socket.emit('write', 'b', 0, 1)	
-				}
-			}
-			else{
-				jQuery(this).attr('data-value' , '0');
-				if(type == 'luz'){
-					socket.emit('write', 'l', 0, 0)	
-				}
-				else if(type == 'vent') {
-					socket.emit('write', 'v', 0, 0)	
-				}
-				else if(type == 'agua'){
-					socket.emit('write', 'b', 0, 0)	
-				}
-			}
-
-		});
 
 		jQuery('.orc_container').each(function(){
 			jQuery(this).find('.col').css('width' , jQuery(this).width()/jQuery(this).find('.row').eq(0).find('.col').length);
@@ -220,6 +257,15 @@ jQuery(document).ready(function(){
 			jQuery('#hiddenInput').val(dataHuerto);
 			jQuery('#hiddenPos').val(pos);
 			jQuery('html, body').css('overflow', 'hidden');
+
+			if(jQuery(this).hasClass('icon') ){
+				jQuery('#elimPlanta').attr('data-id', pos).attr('data-huert', dataHuerto);
+				jQuery('#validPlant').show();
+			}
+			else{
+				jQuery('#info_planta').hide();
+				jQuery('#editPlanta').trigger('click');
+			}
 			
 			jQuery.ajax({
 				method: 'GET',

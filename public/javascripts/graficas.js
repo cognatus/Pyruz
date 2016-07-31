@@ -23,7 +23,7 @@ chartHumedad = new Highcharts.Chart({
 		}
 	},
 	title: {
-		text: 'Live random data'
+		text: ''
 	},
 	xAxis: {
 		type: 'Hora',
@@ -36,7 +36,7 @@ chartHumedad = new Highcharts.Chart({
 		plotLines: [{
 			value: 0,
 			width: 1,
-			color: '#808080'
+			color: '#ffff00'
 		}]
 	},
 	tooltip: {
@@ -59,7 +59,7 @@ chartHumedad = new Highcharts.Chart({
 			var data = [],
 				time = (new Date()).getTime(),
 				i
-			for (i = -19; i <= 0; i += 1) {
+			for (i = -6; i <= 0; i += 1) {
 				data.push({
 					x: time + i * 1000,
 					y: Math.random()
@@ -89,7 +89,7 @@ chartLuz = new Highcharts.Chart({
 		}
 	},
 	title: {
-		text: 'Live random data'
+		text: ''
 	},
 	xAxis: {
 		type: 'Hora',
@@ -126,7 +126,7 @@ chartLuz = new Highcharts.Chart({
 			var data = [],
 				time = (new Date()).getTime(),
 				i
-			for (i = -19; i <= 0; i += 1) {
+			for (i = -6; i <= 0; i += 1) {
 				data.push({
 					x: time + i * 1000,
 					y: Math.random()
@@ -156,7 +156,7 @@ chartTemperatura = new Highcharts.Chart({
 		}
 	},
 	title: {
-		text: 'Live random data'
+		text: ''
 	},
 	xAxis: {
 		type: 'Hora',
@@ -192,7 +192,7 @@ chartTemperatura = new Highcharts.Chart({
 			var data = [],
 				time = (new Date()).getTime(),
 				i
-			for (i = -19; i <= 0; i += 1) {
+			for (i = -6; i <= 0; i += 1) {
 				data.push({
 					x: time + i * 1000,
 					y: Math.random()

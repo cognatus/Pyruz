@@ -66,30 +66,29 @@ block content
 							.close_popup.close_icon.r_f
 						.pd_18.title.white_text Editar Planta
 					.colhh1
-						.pd_18
-							.colhh2.title(style="vertical-align: middle;") Huerto: 
+						.pd_24(style="padding-bottom: 8px;")
+							.colhh1.title(style="vertical-align: middle;") Huerto: 
 								span#nombreHuerto Huerto num 1
-							.colhh2(style="vertical-align: middle;height: 50px;")
-								.button.button_inco.bg_red.r_f Eliminar
-					.colhh1.info_planta
-						.pd_18
+					#info_planta.colhh1.info_planta
+						.pd_24
 							.colhh2 Nombre Planta:
 							#plantaNombre.colhh2(style="text-align: right;")
-						.pd_18
+						.pd_24
 							.colhh2 Luz Optima:
 							#plantaLuz.colhh2(style="text-align: right;")
-						.pd_18
+						.pd_24
 							.colhh2 Humedad Optima:
 							#plantaHum.colhh2(style="text-align: right;")
-						.pd_18
+						.pd_24
 							.colhh2 Temperatura Optima:
 							#plantaTemp.colhh2(style="text-align: right;")
-						.pd_18
+						.pd_24
 							.colhh2 Posición en huerto:
 							#plantaLugar.colhh2(style="text-align: right;")
 					.colhh1
-						.pd_18(style="height: 48px;")
-							#editPlanta.circle_icon.r_f(style="background-image: url('images/edit2.png')")
+						#validPlant.pd_18(style="height: 48px;")
+							#elimPlanta.circle_icon.r_f(style="background-image: url('images/delete.png')" title="Eliminar" data-id="")
+							#editPlanta.circle_icon.r_f(style="background-image: url('images/edit2.png')" title="Editar")
 					form#plantaHidden.colhh1.form_container(action="agregar_planta" method="POST")
 						.colhh1
 							.pd_18(style="font-weight: bold;font-size: 17px;padding: 6px 0 18px 0;") Modificar

@@ -109,8 +109,9 @@ exports.cambia_planta = function(req, res){
 
 	//especificamos el huerto en el cual se agregara la planta y la guardamos
 	garden.update(
-		{ _id: req.body.idHuerto, 'plantas._id': req.body.posc},
-		{ $addToSet: { plantas: {
+		{ _id: req.body.idHuerto, 'plantas._id': req.body.posPlanta},
+		{ $set: { plantas: {
+				_id: req.body.posPlanta,
 				nombre_planta: req.body.nombre_planta,
 				humedad: req.body.humedad,
 				temperatura: req.body.temperatura,
@@ -123,6 +124,36 @@ exports.cambia_planta = function(req, res){
 			}else{
 				console.log(documento)
 				res.redirect('/principal')
+			}
+	});
+}
+
+//metodo para cambiar una planta
+exports.eliminar_planta = function(req, res){
+	var idHuerto = req.body.idHuertoElim;
+	var idPlanta = req.body.plantaElim;
+
+	garden.update({ _id: idHuerto }, { $pull: { plantas: { _id: idPlanta } } },
+		function(error, documento){
+			if(error){
+				console.log(error)
+			}else{
+				console.log(documento)
+				res.redirect('/principal')
+			}
+		});
+}
+
+exports.eliminar_huerto = function(req, res){
+	var idHuerto = req.body.idHuertoDel;
+
+	garden.remove(
+		{ _id: idHuerto }, function(error, documento){
+			if(error){
+				console.log(error)
+			}else{
+				console.log(documento)
+				res.send('Eliminado')
 			}
 	});
 }

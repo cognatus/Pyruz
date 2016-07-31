@@ -63,6 +63,9 @@ app.post('/registra', user.registra)
 app.post('/modificaInfo', user.modificaInfo)
 app.post('/agregar_planta', garden.agregar_planta)
 app.post('/crear_huerto', garden.crear_huerto)
+app.post('/cambia_planta', garden.cambia_planta)
+app.post('/eliminar_planta', garden.eliminar_planta)
+app.post('/eliminar_huerto', garden.eliminar_huerto)
 
 
 /*
@@ -111,6 +114,7 @@ var serialPortWrite = new SerialPort("COM5", {
 		
 
 	 	socket.on('write', function (cosa, piso, condicion){
+	 		console.log(cosa+' y '+condicion)
 			if (boardReady) {
 				var led = new j5.Led(53);
 				var venti = new j5.Led(51);
